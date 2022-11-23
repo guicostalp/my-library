@@ -11,32 +11,34 @@
   
   <div class="container">
 
-    <div id="books">
-      </div>
-    <button class="input" onclick=addBook()>Insert Book</button>
+    <div id="books"></div>
 
-    </div>
+
+   
 
     <button id="show-form">Show Form</button>
 
-    <form id="main-form">
+    <form id="main-form" style="display: none;">
       <label for="title">
         Title
-        <input type="text" name="title" placeholder="Insert Title">
+        <input type="text" name="title" placeholder="Insert Title" id="title">
       </label>
       <label for="author">
         Author
-        <input type="text" name="autor" placeholder="Insert Writer">
+        <input type="text" name="autor" placeholder="Insert Writer" id="author">
       </label>
       <label for="pages">
         Pages
-        <input type="text" name="pages" placeholder="Insert number of pages">
+        <input type="text" name="pages" placeholder="Insert number of pages" id="pages">
       </label>
       <label for="read">
-        Read?
-        <input type="text" name="read" placeholder="Have you read this book?">
+        Have you read this book?
+        <select name="read" id="read">
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
       </label>
-
+      <button type="button" form="main-form" onclick="createBook()" id="get-input">Insert Book</button>
 
 
     </form>
