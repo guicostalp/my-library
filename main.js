@@ -6,7 +6,6 @@ let myLibrary = [
         read: true,
         id: ''
     },
-
     {
         title: "Alice in Wonderland" ,
         author: "Lewis Carol" ,
@@ -14,7 +13,6 @@ let myLibrary = [
         read: true,
         id: ''
     },
-
     {
         title: "Game of Thrones" ,
         author: "George Martin" ,
@@ -22,7 +20,6 @@ let myLibrary = [
         read: false,
         id: ''
     },
-
     {
         title: "The Archer" ,
         author: "Bernard Cornwell" ,
@@ -30,7 +27,6 @@ let myLibrary = [
         read: true,
         id: ''
     },
-
     {
         title: "Excalibur" ,
         author: "Bernard Cornwell" ,
@@ -38,17 +34,14 @@ let myLibrary = [
         read: true,
         id: ''
     }
-
 ];
 
 
 //Create new Object on array - Insert object (input) on Array
 
 function createBook(){
-
     
     myLibrary.push(getInput());
-
     createDiv(getInput().title, getInput().author, getInput().pages, getInput().read, getInput().id);
 
 }
@@ -57,9 +50,7 @@ function createBook(){
 
 for (i=0; i < myLibrary.length; i++) {
 
-
-    myLibrary[i].id = Math.floor(Math.random()*10000);
-    
+    myLibrary[i].id = Math.floor(Math.random()*10000);    
     createDiv(myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].read, myLibrary[i].id);
 
 }
@@ -79,7 +70,6 @@ function getInput(){
 
     const idInput = Math.floor(Math.random()*10000);
 
-
     const input = {
 
         title: formTitle,
@@ -89,14 +79,8 @@ function getInput(){
         id: idInput
 
     }
-
-
     return input;
-
 }
-
-
-
 
 //Create DIV for each element on array
 
@@ -106,11 +90,8 @@ function createDiv (title, author, pages, read, id) {
     div.setAttribute("id", id); //set ID
     div.setAttribute("class", "book"); //set CLASS
 
-
-
     //Create DIV Content
     let createText = '';
-
     createText += '<p>Title: '+title+'</p>';
     createText += '<p>Author: '+author+'</p>';
     createText += '<p>Pages: '+pages+'</p>';
@@ -126,33 +107,23 @@ function createDiv (title, author, pages, read, id) {
     
 }
 
-//Remove book from DIV
+//Remove book from DIV - Remove button
 
 function removeBook(id) {
 
     const btnId = document.getElementById(id);
     btnId.parentNode.removeChild(btnId);
 
-
-
-    console.log(btnId);
-    
-
-
-
 }
-
 
 //Use Constructor Book to create newBook input
 
 function addBook(title, author, pages, read){
 
-
     const newBook = new Book(title, author, pages, read)
 
     //Push newBook to the Array
     myLibrary.push(newBook);
-
 }
 
 //Constructor Book
@@ -167,13 +138,11 @@ function Book (title, author, pages, read) {
         return title +" by "+ author +", " + pages+", " + read
 
     }
-
 }
 
 //Form visibility
 
 const btn = document.getElementById('show-form');
-
 
 btn.addEventListener('click', () => {
     const form = document.getElementById('main-form');
@@ -186,11 +155,4 @@ btn.addEventListener('click', () => {
         // 👇️ this HIDES the form
         form.style.display = 'none';
       }
-
-
 })
-
-
-
-
-
