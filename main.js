@@ -4,7 +4,7 @@ let myLibrary = [
         author: "Tolkien" ,
         pages: 1258 ,
         read: true,
-        index: 0
+        id: ''
     },
 
     {
@@ -12,7 +12,7 @@ let myLibrary = [
         author: "Lewis Carol" ,
         pages: 359 ,
         read: true,
-        index: 1
+        id: ''
     },
 
     {
@@ -20,7 +20,7 @@ let myLibrary = [
         author: "George Martin" ,
         pages: 978 ,
         read: false,
-        index: 2
+        id: ''
     },
 
     {
@@ -28,7 +28,7 @@ let myLibrary = [
         author: "Bernard Cornwell" ,
         pages: 453 ,
         read: true,
-        index: 3
+        id: ''
     },
 
     {
@@ -36,7 +36,7 @@ let myLibrary = [
         author: "Bernard Cornwell" ,
         pages: 689 ,
         read: true,
-        index: 4
+        id: ''
     }
 
 ];
@@ -48,8 +48,8 @@ function createBook(){
 
     
     myLibrary.push(getInput());
-    console.log(myLibrary)
-    createDiv(getInput().title, getInput().author, getInput().pages, getInput().read, getInput().index);
+
+    createDiv(getInput().title, getInput().author, getInput().pages, getInput().read, getInput().id);
 
 }
 
@@ -58,8 +58,9 @@ function createBook(){
 for (i=0; i < myLibrary.length; i++) {
 
 
-    index = myLibrary.indexOf(i);
-    createDiv(myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].read, myLibrary[i].index);
+    myLibrary[i].id = Math.floor(Math.random()*10000);
+    
+    createDiv(myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].read, myLibrary[i].id);
 
 }
 
@@ -76,7 +77,7 @@ function getInput(){
     const formPages = document.querySelector('#pages').value;
     const formRead = document.querySelector('#read').value;
 
-    const indexInput = myLibrary.length - 1;
+    const idInput = Math.floor(Math.random()*10000);
 
 
     const input = {
@@ -85,7 +86,7 @@ function getInput(){
         author: formAuthor,
         pages: formPages,
         read: formRead,
-        index: indexInput
+        id: idInput
 
     }
 
@@ -99,11 +100,11 @@ function getInput(){
 
 //Create DIV for each element on array
 
-function createDiv (title, author, pages, read, index) {
+function createDiv (title, author, pages, read, id) {
 
     const div = document.createElement("div"); //create tag
-    div.setAttribute("id", "book"); //set ID
-    div.setAttribute("class", "books"); //set CLASS
+    div.setAttribute("id", id); //set ID
+    div.setAttribute("class", "book"); //set CLASS
 
 
 
@@ -114,8 +115,8 @@ function createDiv (title, author, pages, read, index) {
     createText += '<p>Author: '+author+'</p>';
     createText += '<p>Pages: '+pages+'</p>';
     createText += '<p>Read?: '+read+'</p>';
-    createText += '<p>Index #: '+index+'</p>';
-    createText += '<button class="deleteBtn">Delete</button>'
+    createText += '<p>Id #: '+id+'</p>';
+    createText += '<button id="deleteButton" onclick="removeBook('+id+')">Delete</button>'
 
     //Insert content inside DIV
     div.innerHTML = createText;
@@ -124,6 +125,23 @@ function createDiv (title, author, pages, read, index) {
     document.getElementById("books").appendChild(div);
     
 }
+
+//Remove book from DIV
+
+function removeBook(id) {
+
+    const btnId = document.getElementById(id);
+    btnId.parentNode.removeChild(btnId);
+
+
+
+    console.log(btnId);
+    
+
+
+
+}
+
 
 //Use Constructor Book to create newBook input
 
