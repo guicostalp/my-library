@@ -97,6 +97,7 @@ function createDiv (title, author, pages, read, id) {
     createText += '<p>Pages: '+pages+'</p>';
     createText += '<p>Read?: '+read+'</p>';
     createText += '<p>Id #: '+id+'</p>';
+    createText += '<button id="readButton" onclick="toggleRead('+id+')">Read</button>';
     createText += '<button id="deleteButton" onclick="removeBook('+id+')">Delete</button>'
 
     //Insert content inside DIV
@@ -105,6 +106,15 @@ function createDiv (title, author, pages, read, id) {
     //appendChield to div ID books
     document.getElementById("books").appendChild(div);
     
+}
+
+function toggleRead(bookId){
+
+    const toggle = myLibrary.filter(id => id.id == bookId)
+
+    console.log(toggle);
+
+
 }
 
 //Remove book from DIV - Remove button
