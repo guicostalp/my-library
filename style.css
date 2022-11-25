@@ -4,5 +4,50 @@
     gap: 15px;
     justify-content: space-between;
 
+}
+
+/*Read Status Toggle Button*/
+
+input[type="checkbox"] {
+
+    width: 70px;
+    height: 35px;
+    appearance: none;
+    background-color: #c0c0c0;
+    border-radius: 50px;
+    box-shadow: inset 0px 0px 16px 1px;
+    cursor: pointer;
+    transition: .4s;
+    position: relative;
 
 }
+
+input:checked[type='checkbox'] {
+
+    background-color: rgb(6, 224, 6);
+
+}
+
+input[type="checkbox"]:before {
+
+    content: '';
+    width: 35px;
+    height: 35px;
+    background-color: #edf3f1;
+    border-radius: 50px;
+    position: absolute;
+    box-shadow: 0px 4px 8px .1px;
+    transform: scale(1.1);
+    top: 0;
+    left: 0;
+    transition: .4s;
+
+}
+
+input:checked[type="checkbox"]:before {
+
+
+    left: 35px;
+
+}
+

@@ -10,7 +10,7 @@ let myLibrary = [
         title: "Alice in Wonderland" ,
         author: "Lewis Carol" ,
         pages: 359 ,
-        read: true,
+        read: false,
         id: ''
     },
     {
@@ -31,22 +31,12 @@ let myLibrary = [
         title: "Excalibur" ,
         author: "Bernard Cornwell" ,
         pages: 689 ,
-        read: true,
+        read: false,
         id: ''
     }
 ];
 
-
-//Create new Object on array - Insert object (input) on Array
-
-function createBook(){
-    
-    myLibrary.push(getInput());
-    createDiv(getInput().title, getInput().author, getInput().pages, getInput().read, getInput().id);
-
-}
-
-//Loop through the Array - Load page
+//Loop through the Array on load page - Create DIV for each element on array with createDiv()
 
 for (i=0; i < myLibrary.length; i++) {
 
@@ -55,34 +45,29 @@ for (i=0; i < myLibrary.length; i++) {
 
 }
 
+//Event listener forEach Read Checkbox
+
+const checkboxes = document.querySelectorAll("input[type=checkbox]")
+
+
+checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function (){
+
+        if (this.checked) {
+
+            console.log("Checkbox is checked..");
+        } 
+        else {
+            console.log("Checkbox is not checked..");}
+
+    })
+
+});
+
 
                 // FUNCTIONS
 
-
-//Get form inputs - Transforms in object (input)                
-
-function getInput(){
-
-    const formTitle = document.querySelector('#title').value;
-    const formAuthor = document.querySelector('#author').value;
-    const formPages = document.querySelector('#pages').value;
-    const formRead = document.querySelector('#read').value;
-
-    const idInput = Math.floor(Math.random()*10000);
-
-    const input = {
-
-        title: formTitle,
-        author: formAuthor,
-        pages: formPages,
-        read: formRead,
-        id: idInput
-
-    }
-    return input;
-}
-
-//Create DIV for each element on array
+//Create DIV with objects / Array and inputs
 
 function createDiv (title, author, pages, read, id) {
 
@@ -97,25 +82,73 @@ function createDiv (title, author, pages, read, id) {
     createText += '<p>Pages: '+pages+'</p>';
     createText += '<p>Read?: '+read+'</p>';
     createText += '<p>Id #: '+id+'</p>';
-    createText += '<button id="readButton" onclick="toggleRead('+id+')">Read</button>';
+    if (read==true) {
+        createText += '<input type="checkbox" checked>';
+    }
+    else {
+        createText += '<input type="checkbox">';
+    }
+    
     createText += '<button id="deleteButton" onclick="removeBook('+id+')">Delete</button>'
 
     //Insert content inside DIV
     div.innerHTML = createText;
 
-    //appendChield to div ID books
+    //appendChild to div ID books
     document.getElementById("books").appendChild(div);
     
+}                
+
+
+
+
+//Push new Object into array - Insert object (input) on Array
+
+function createBook(){
+    
+    myLibrary.push(getInput());
+    createDiv(getInput().title, getInput().author, getInput().pages, getInput().read, getInput().id);
+
 }
 
-function toggleRead(bookId){
-
-    const toggle = myLibrary.filter(id => id.id == bookId)
-
-    console.log(toggle);
 
 
+//Get form inputs - Transforms in object (input) (Constructor)               
+
+function getInput(){
+
+    const formTitle = document.querySelector('#title').value;
+    const formAuthor = document.querySelector('#author').value;
+    const formPages = document.querySelector('#pages').value;
+    const formRead = document.querySelector('input[type=checkbox][id=read]');
+
+    let readCheck = ''
+    if (formRead.checked) {
+        readCheck = true;
+
+    } else {
+        readCheck = false;
+    }
+
+
+
+    const idInput = Math.floor(Math.random()*10000);
+
+    const input = {
+
+        title: formTitle,
+        author: formAuthor,
+        pages: formPages,
+        read: readCheck,
+        id: idInput
+
+    }
+    return input;
 }
+
+
+
+
 
 //Remove book from DIV - Remove button
 
